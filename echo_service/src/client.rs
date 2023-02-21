@@ -7,7 +7,7 @@ pub mod hello {
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let mut client = HelloClient::connect("http://[::1]:50051").await?;
+    let mut client = HelloClient::connect("http://0.0.0.0:50051").await?;
 
     loop {
         println!("What would you like to say to the server? ");
