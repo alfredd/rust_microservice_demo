@@ -1,6 +1,5 @@
 use hello::{hello_client::HelloClient, HelloRequest};
 use std::io;
-// use tonic::{transport::Server, Request, Response, Status};
 
 pub mod hello {
     tonic::include_proto!("hello");
@@ -16,7 +15,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         io::stdin()
             .read_line(&mut message)
             .expect("Failed to read line");
-        //   println!("Your message reads: {}", message);
 
         let request = tonic::Request::new(HelloRequest {
             message: String::from(message),
@@ -24,6 +22,4 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         let response = client.hello_world(request).await?;
         println!("The server says: '{}'", response.into_inner().message);
     }
-
-    //   Ok(())
 }
